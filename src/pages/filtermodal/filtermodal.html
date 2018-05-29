@@ -1,0 +1,64 @@
+<ion-header>
+  	<ion-navbar>
+  		<ion-buttons start>
+      		<button class="black-text" ion-button (click)="closeModal()">Close</button>
+    	</ion-buttons>
+    	<ion-title>Filter Products</ion-title>
+        <ion-buttons end>
+            <button class="black-text" ion-button (click)="refresh()"><ion-icon name="refresh"></ion-icon></button>
+        </ion-buttons>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-list>
+        <button ion-item *ngFor="let item of filterlisting" (click)="selectfilter(item.component)">
+            {{ item.title }}
+      </button>
+    </ion-list> -->
+    <!-- <pre>{{filterlisting.categories | json}}</pre> -->
+    <accordion [showArrows]="true">
+        <accordion-group [isOpened]="true"> 
+            <accordion-heading class="heading"> Categories, {{categories}} </accordion-heading>
+            <ion-list radio-group [(ngModel)]="categories">
+                <ion-item *ngFor="let item of filterlisting.categories">
+                    <ion-label>{{item.label}}</ion-label>
+                    <ion-radio value="{{item.id}}"></ion-radio>
+                </ion-item>
+            </ion-list>
+        </accordion-group>
+        <accordion-group>
+            <accordion-heading class="heading"> Product Type, {{types}} </accordion-heading>
+            <ion-list radio-group [(ngModel)]="types">
+                <ion-item *ngFor="let item of filterlisting.types">
+                    <ion-label>{{item.value}}</ion-label>
+                    <ion-radio value="{{item.option_id}}"></ion-radio>
+                </ion-item>
+            </ion-list>
+        </accordion-group>
+        <accordion-group>
+            <accordion-heading class="heading"> Color, {{colors}} </accordion-heading>
+            <ion-list radio-group [(ngModel)]="colors">
+                <ion-item *ngFor="let item of filterlisting.colors">
+                    <ion-label>{{item.value}}</ion-label>
+                    <ion-radio value="{{item.option_id}}"></ion-radio>
+                </ion-item>
+            </ion-list>
+        </accordion-group>
+        <accordion-group>
+            <accordion-heading class="heading"> Brands, {{brand}} </accordion-heading>
+            <ion-list radio-group [(ngModel)]="brand">
+                <ion-item *ngFor="let item of filterbrands">
+                    <ion-label>{{item}}</ion-label>
+                    <ion-radio value="{{item}}"></ion-radio>
+                </ion-item>
+            </ion-list>
+        </accordion-group>
+    </accordion>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar position="bottom">
+        <button (click)="closeModal()" ion-button block color="dark">APPLY</button>
+    </ion-toolbar>
+</ion-footer>

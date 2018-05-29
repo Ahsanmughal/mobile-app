@@ -1,0 +1,29 @@
+<ion-header>
+  	<ion-navbar>
+  		<ion-buttons start>
+      		<button class="black-text" ion-button (click)="closeModal()">Close</button>
+    	</ion-buttons>
+    	<ion-title>PROMO CODE</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<h6 item-label>COUPON CODE</h6>
+				<div>
+					<p style="font-weight: bold; font-size: 14px;">Enter coupon code here</p>
+					<ion-input style="border:1px solid #dedede; padding-left: 10px;" type="text" placeholder="coupon code"></ion-input>
+				</div>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <button (click)="closeModal()" float-right ion-button small color="light">Cancel</button>
+        <button (click)="closeModal()" float-right ion-button small color="dark">APPLY</button>
+    </ion-toolbar>
+</ion-footer>

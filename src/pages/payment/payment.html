@@ -1,0 +1,115 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons start>
+            <button class="black-text" ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        </ion-buttons>
+        <ion-title>PAYMENT</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<ion-item *ngFor="let item of options; let i=index">
+    				<ion-label>{{item}}</ion-label>
+    				<ion-checkbox color="dark" item-left [ngModel]="checkedIdx == i" (ngModelChange)="$event ? checkedIdx = i : checkedIdx = -1" ></ion-checkbox>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<ion-list>
+					<div>
+			    		<p class="payment-title">Name on the card</p>
+		    			<ion-input class="payment-input" type="text"></ion-input>
+					</div>
+					<div>
+						<p class="payment-title">Credit Card Number</p>
+						<ion-input class="payment-input" type="text"></ion-input>
+					</div>
+					<ion-row>
+						<ion-col col-6>
+							<div>
+	    						<p class="payment-title">Month</p>
+	    						<ion-input class="payment-input" type="text"></ion-input>
+							</div>
+						</ion-col>			
+						<ion-col col-6>
+							<div>
+								<p class="payment-title">Year</p>
+	    						<ion-input class="payment-input" type="text"></ion-input>
+							</div>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-6 no-padding>
+							<div>
+		    					<p class="payment-title">CVV</p>
+	    						<ion-input class="payment-input" type="text"></ion-input>
+							</div>
+						</ion-col>
+					</ion-row>
+				</ion-list>
+			</ion-col>
+		</ion-row>
+
+		<ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-9>
+                        <h3 class="text-bold" text-right>Sub Total</h3>
+                    </ion-col>
+                    <ion-col col-3>
+                        <h3 class="text-bold" text-right>100 AED</h3>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-9>
+                        <h3 class="text-bold" text-right>Promo Code</h3>
+                    </ion-col>
+                    <ion-col col-3>
+                        <h3 class="text-bold" text-right>30 AED</h3>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-9>
+                        <h3 class="text-bold" text-right>Shipping Charge</h3>
+                    </ion-col>
+                    <ion-col col-3>
+                        <h3 class="text-bold" text-right>20 AED</h3>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+        <ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-9>
+                        <div text-right>
+                            <h3 class="text-bold">Cart Total <small class="text-normal">(Inclusive of VAT)</small></h3>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <h3 class="text-bold" text-right>150 AED</h3>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+
+	</ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button (click)="gotothanks()" ion-button color="dark" icon-start text-uppercase full>
+                    <ion-icon name="briefcase"></ion-icon>  place order
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>

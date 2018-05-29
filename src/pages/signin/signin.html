@@ -1,0 +1,96 @@
+<ion-header>
+  	<ion-navbar>
+    	<button class="black-text" ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>Sign In</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="signin-box">
+		<form (ngSubmit)="signin()" #signinform="ngForm" novalidate>
+			
+			<ion-row>
+				<ion-col>
+					<ion-item>
+						<ion-label color="dark" floating>Email</ion-label>
+						<ion-input type="email" [(ngModel)]="signform.username" ngControl="username" name="username" required></ion-input>
+					</ion-item>
+					<ion-item>
+ 						<ion-label floating>Password</ion-label>
+ 						<ion-input type="{{type}}" [(ngModel)]="signform.password" ngControl="password" name="password" required></ion-input> 		
+ 						<button class="eye-button" *ngIf="!showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()"> 
+ 							<ion-icon name="ios-eye-off-outline"></ion-icon>
+ 						</button>
+ 						<button class="eye-button" *ngIf="showPass" ion-button clear color="dark" type="button" item-right (click)="showPassword()">
+ 							<ion-icon name="ios-eye-outline"></ion-icon>
+ 						</button>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+			<ion-row text-right>
+				<ion-col>
+					<a (click)="gotoforget()">Forget Password</a>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<button ion-button block color="dark" full type="submit" [disabled]="!signinform.form.valid">SIGN IN</button>			
+				</ion-col>
+			</ion-row>
+			<ion-row text-right>
+				<ion-col>
+					<p class="no-acc">Don't have an account? <a (click)="gotoregister()">Sign Up</a></p>
+				</ion-col>
+			</ion-row>
+		</form>
+	</div>
+</ion-content>
+
+
+
+
+<!-- 
+
+	<ion-header>
+  	<ion-navbar>
+    	<button class="black-text" ion-button menuToggle>
+      		<ion-icon name="menu"></ion-icon>
+    	</button>
+    	<ion-title>Signin</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="signin-box">
+		<form (ngSubmit)="signin(form)" #signinform="ngForm" novalidate>
+			<ion-row>
+				<ion-col>
+					<ion-item>
+						<ion-label color="dark" stacked>Email</ion-label>
+						<ion-input type="email" [(ngModel)]="signform.email" ngControl="email" name="email" required></ion-input>
+					</ion-item>
+					<ion-item>
+						<ion-label color="dark" stacked>Password</ion-label>
+						<ion-input  [type]="passwordType" [(ngModel)]="signform.password" ngControl="password" name="password" required></ion-input>
+						<ion-icon style="color:gray; margin-top: 38px;" name="eye" (click)="togglePassword()" item-end></ion-icon>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+						<button ion-button block color="dark" full type="submit" [disabled]="!signinform.form.valid">SIGN IN</button>			
+				</ion-col>
+			</ion-row>
+			<ion-icon name="eye" (click)="togglePassword()"></ion-icon>
+		</form>
+		<ion-row text-center>
+			<ion-col>
+				<a (click)="gotoforget()">Forget Password</a>
+			</ion-col>
+		</ion-row>
+	</div>
+</ion-content>
+
+ -->

@@ -1,0 +1,26 @@
+<ion-header>
+  	<ion-navbar>
+  		<ion-buttons start>
+      		<button class="black-text" ion-button (click)="closeModal()">Close</button>
+    	</ion-buttons>
+    	<ion-title>Sort Products</ion-title>
+  	</ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-list radio-group>
+		<ion-item>
+      		<ion-label>BEST MATCH</ion-label>
+      		<ion-radio value="bestmatch" checked="true"></ion-radio>
+    	</ion-item>
+
+    	<ion-item>
+      		<ion-label>PRICE: LOW TO HIGH</ion-label>
+      		<ion-radio value="asc"></ion-radio>
+    	</ion-item>
+
+    	<ion-item>
+      		<ion-label>PRICE: HIGH TO LOW</ion-label>
+      		<ion-radio value="desc"></ion-radio>
+    	</ion-item>
+	</ion-list>
+</ion-content>

@@ -1,0 +1,29 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>My Address</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list class="addresslistt">
+		<div class="adlist" *ngFor="let item of addresslist; let i=index">
+			<ion-item>
+				<ion-label>
+					<p>{{item.firstname}} {{item.lastname}}</p>	
+					<p>{{item.addressline1}}</p>
+					<p>{{item.addressline2}}</p>
+					<p>{{item.city}}, {{item.country}}</p>
+					<p>Mobile : {{item.mobile.ccode}} {{item.mobile.mcode}} {{item.mobile.number}}</p>
+				</ion-label>
+				<ion-checkbox [ngModel]="checkedIdx == i" (ngModelChange)="$event ? checkedIdx = i : checkedIdx = -1" item-right color="dark"></ion-checkbox>
+			</ion-item>
+			<div class="adbtns">
+				<button ion-button class="btn" (click)="editadd()" small>EDIT</button>
+				<button ion-button class="btn" (click)="presentConfirm()" small>REMOVE</button>
+			</div> 
+		</div>
+	</ion-list>
+	<ion-fab bottom right>
+   		<button (click)="newadd()" color="dark" ion-fab><ion-icon name="add"></ion-icon></button>
+ 	</ion-fab>
+</ion-content>

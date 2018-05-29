@@ -1,0 +1,25 @@
+page-productlist {
+	.productblock{
+		position: relative;
+	}
+	.productblock img{
+		max-height: 110px;
+	}
+	.price-inline{
+		display: inline-block;
+	}
+	.price-was{
+		text-decoration: line-through;
+		color: #a2a2a2;
+	}
+	.product-wishbutton{
+		position: absolute;
+		top: 0px;
+		right:0px;
+		height: 30px;
+		width: 30px;
+		border-radius: 50%;
+		background-color: transparent;
+		color: #333
+	}
+}

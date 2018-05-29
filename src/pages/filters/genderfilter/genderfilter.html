@@ -1,0 +1,23 @@
+<ion-header>
+  	<ion-navbar>
+  		<ion-buttons start>
+      		<button class="black-text" ion-button (click)="closeModal()">Close</button>
+    	</ion-buttons>
+    	<ion-title>Gender Filter</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list radio-group>
+		<ion-item *ngFor="let type of genderlisting">
+      <ion-label>{{type.title}} ({{type.count}})</ion-label>
+      <ion-radio value="{{type.value}}"></ion-radio>
+    </ion-item>
+	</ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar position="bottom">
+        <button (click)="closeModal()" ion-button block color="dark">APPLY</button>
+    </ion-toolbar>
+</ion-footer>

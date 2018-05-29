@@ -1,0 +1,130 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button class="black-text" ion-button menuToggle icon-only>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Cart</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only> 
+                <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+           </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<div class="center-content" *ngIf="!cart_flag">
+		<ion-icon name="cart"></ion-icon>
+		<h2 align="center">Cart is empty.</h2>
+		<p align="center">Looks like you have no items in your shopping cart.</p>
+		<p align="center">Click <a>here</a> to continue shopping.</p>
+	</div>
+
+	<div *ngIf="cart_flag">
+		<ion-list>
+			<ion-item *ngFor="let item of cartlist">
+		    	<ion-grid>
+			    	<ion-row>
+			    		<ion-col col-3>
+			    			<img src="{{item.product_image}}" class="cart-img"/>
+				    	</ion-col>
+				    	<ion-col col-9>
+				 			<h2 text-wrap class="card-title">{{item.name}}</h2>
+				 			<h2>{{item.price}} AED</h2>
+			 			</ion-col>
+			   		</ion-row>
+			    	<ion-row>
+			    		<ion-col col-4>
+		        			<ion-item class="cart-select">
+								<ion-select [(ngModel)]="qty">
+									<ion-option value="1" selected="true">1</ion-option>
+									<ion-option value="2">2</ion-option>
+									<ion-option value="3">3</ion-option>
+									<ion-option value="4">4</ion-option>
+									<ion-option value="5">5</ion-option>
+								</ion-select>
+							</ion-item>
+			        	</ion-col>
+			    		<ion-col col-4>
+			    			<button class="btn-cart-default" ion-button small> Wishlist </button>
+				    	</ion-col>
+				        <ion-col col-4>
+				            <button class="btn-cart-default" ion-button small> Remove </button>
+				        </ion-col>
+			    	</ion-row>
+				</ion-grid>
+			</ion-item>
+			<ion-item>
+				<ion-grid>
+					<ion-row>
+						<ion-col col-9>
+							<h3 text-right>Sub Total</h3>
+						</ion-col>
+						<ion-col col-3>
+							<h3 text-right>{{cart_total.base_subtotal}} AED</h3>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col col-9>
+							<h3 text-right>Shipping Charge</h3>
+						</ion-col>
+						<ion-col col-3>
+							<h3 text-right>{{cart_total.base_shipping_amount}} AED</h3>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-item>
+
+			<ion-item>
+				<ion-grid>
+					<ion-row>
+						<ion-col col-9>
+							<div text-right>
+								<h3>Cart Total <small class="text-normal">(Inclusive of VAT)</small></h3>
+							</div>
+						</ion-col>
+						<ion-col col-3>
+							<h3 text-right>{{cart_total.base_grand_total}} AED</h3>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col>
+							<button (click)="gotopayment()" ion-button color="dark" icon-start text-uppercase full> continue to payment </button>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-item>
+<!-- 			<pre>{{cart_total | json}}</pre> -->
+
+			<ion-item>
+				<div>
+					<p text-center text-wrap>Your personal payment information will be save securely.</p>
+					<ion-row>
+						<ion-col>
+							<a> 
+								<img src="http://res.cloudinary.com/dya3lk1ns/image/upload/v1525259842/visa-min_im1m9l.png" class="center-img">
+							</a>
+						</ion-col>
+						<ion-col>
+							<a>
+								<img src="http://res.cloudinary.com/dya3lk1ns/image/upload/v1525259843/master-card-min_wlzlzu.png" class="center-img">
+							</a>
+						</ion-col>
+						<ion-col>
+							<a>
+								<img src="http://res.cloudinary.com/dya3lk1ns/image/upload/v1525259842/paypal-min_dtqclf.png" class="center-img">
+							</a>
+						</ion-col>
+						<ion-col>
+							<a> 
+								<img src="http://res.cloudinary.com/dya3lk1ns/image/upload/v1525259843/cod-min_lpubnb.png" class="center-img">
+							</a>
+						</ion-col>
+					</ion-row>
+				</div>
+			</ion-item>
+		</ion-list>
+	</div>
+</ion-content>

@@ -1,0 +1,248 @@
+<ion-header>
+	<ion-navbar>
+        <ion-buttons start>
+            <button class="black-text" ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        </ion-buttons>
+        <ion-title><img src="assets/imgs/menamall-logo.png" style="max-height: 25px;" /></ion-title>
+        <!-- <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-buttons> -->
+        <ion-buttons end>
+            <button class="black-text" ion-button icon-only> 
+                <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+           </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12>
+				<!-- <pre>{{productdetail | json}}</pre> -->
+				<div class="product-banner">
+					<ion-slides pager>
+	        			<ion-slide *ngFor="let slide of product_images">
+	        				<img src="{{slide}}">
+			        	</ion-slide>
+	    			</ion-slides>
+	    			<ion-buttons style="position: absolute; top: 0px; right: 0px;" end>
+	            		<button ion-button icon-only clear> 
+	                		<ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+			           </button>
+	    		    </ion-buttons>
+			    </div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<ion-list class="pd-list">
+					<ion-item class="no-pad-left">
+						<h4 class="text-28">{{productdetail.product_name}}</h4>
+						<div class="spacer20"></div>
+<!-- 						<div class="price-inline sp-price"><h4 class="text-28">{{productdetail.special_price}} AED</h4></div>
+	                    <div class="price-inline price-was"><span >{{productdetail.price}} AED</span></div> -->
+	                    <ng-container *ngIf="productdetail.price == 0; else second">
+                        	<div *ngIf="productdetail.special_price > 0 || productdetail.special_price == null">
+                            	<div class="price-inline sp-price"><h4 class="text-28">{{productdetail.special_price}} AED</h4></div>
+	                        </div>
+    	                </ng-container>
+
+        	            <ng-template #second>
+            	            <ng-container *ngIf="productdetail.special_price == 0 || productdetail.special_price == null; else third">
+                	            <div *ngIf="productdetail.price > 0">
+                    	            <div class="price-inline"><span>{{productdetail.price}} AED</span></div>
+                        	    </div>
+                        	</ng-container>
+                    	</ng-template>
+
+	                    <ng-template #third>
+	                        <ng-container *ngIf="productdetail.price == productdetail.special_price; else fourth">
+	                            <div class="price-inline"><span>{{productdetail.price}} AED</span></div>
+	                        </ng-container>
+	                    </ng-template>
+
+	                    <ng-template #fourth>
+	                        <ng-container *ngIf="productdetail.price < productdetail.special_price; else fifth">
+	                            <div class="price-inline sp-price"><span>{{productdetail.price}} AED</span></div>
+	                            <div class="price-inline price-was"><h4 class="text-28">{{productdetail.special_price}} AED</h4></div>
+	                        </ng-container>
+	                    </ng-template>
+
+	                    <ng-template #fifth>
+	                        <ng-container *ngIf="productdetail.price > productdetail.special_price">
+	                            <div class="price-inline sp-price"><h4 class="text-28">{{productdetail.special_price}} AED</h4></div>
+	                            <div class="price-inline price-was"><span>{{productdetail.price}} AED</span></div>
+	                        </ng-container>
+	                    </ng-template>
+
+					</ion-item>
+					<ion-item class="no-pad-left">
+						<div class="pd-info">
+							<div *ngIf="color_size_variant_flag == true || color_flag == true" class="dib pi">
+								<h5 class="text-bold">Color: <span>{{colortext}}</span></h5>
+							</div>
+							<div class="dib">
+								<h5 class="text-bold">Product-Code: <span>{{productdetail.sku}}</span></h5>
+							</div>
+						</div>
+					</ion-item>
+					<ion-item class="no-pad-left">
+						<div class="pd-info">
+							<h5 class="text-bold">Brand : <span>{{productdetail.brand}}</span></h5>
+						</div>
+					</ion-item>
+					<ion-item class="no-pad-left" *ngIf="inStock_flag == true">
+						<div class="pd-info">
+							<h5 class="text-bold">Availability  : <span>{{inStock}}</span></h5>
+						</div>
+					</ion-item>
+					<div *ngIf="size_varirant_flage == true">
+						<button (click)="opensize()" ion-item class="no-pad-left size-block">
+							<h4 class="title">SIZE</h4>
+							<h4 class="value">{{sizetext}}</h4>
+						</button>
+					</div>
+
+					<div *ngIf="color_size_variant_flag == true">
+						<button (click)="opensize()" ion-item class="no-pad-left size-block">
+							<h4 class="title">SIZE</h4>
+							<h4 class="value">{{sizetext}}</h4>
+						</button>
+						<button (click)="opencolor()" ion-item class="no-pad-left color-block">
+							<h4 class="title">COLOR</h4>
+							<h4 class="value">{{colortext}}</h4>
+						</button>
+					</div>
+
+					<div *ngIf="color_flag == true">
+						<button (click)="opencolor()" ion-item class="no-pad-left color-block">
+							<h4 class="title">COLOR</h4>
+							<h4 class="value">{{colortext}}</h4>
+						</button>
+					</div>
+
+				</ion-list>
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+			<ion-col col-12>
+				<div class="pd-option">
+					<div class="dib imgblock">
+						<img src="assets/imgs/icon-truck.png" class="center-img">
+					</div>
+					<div class="dib">
+						<h6 class="title">FREE SHIPPING</h6>
+						<p class="info">For all order above 500 AED</p>
+					</div>
+				</div>
+			</ion-col>
+			<ion-col col-12>
+				<div class="pd-option">
+					<div class="dib imgblock">
+						<img src="assets/imgs/icon-secure.png" class="center-img">
+					</div>
+					<div class="dib">
+						<h6 class="title">SECURE PAYMENT</h6>
+						<p class="info">Your payment always protected</p>
+					</div>
+				</div>
+			</ion-col>
+			<ion-col col-12>
+				<div class="pd-option">
+					<div class="dib imgblock">
+						<img src="assets/imgs/icon-return.png" class="center-img">
+					</div>
+					<div class="dib">
+						<h6 class="title">EASY RETURN</h6>
+						<p class="info">For any damaged or defective product.</p>
+					</div>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<div text-center>
+					<h4>SHARE</h4>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col no-padding class="social">
+				<button ion-button color="dark">
+					<ion-icon ios="logo-pinterest" md="logo-pinterest"></ion-icon>
+				</button>
+			</ion-col>
+			<ion-col no-padding class="social">
+				<button ion-button color="dark">
+					<ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+				</button>
+			</ion-col>
+			<ion-col no-padding class="social">
+				<button ion-button color="dark">
+					<ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
+				</button>
+			</ion-col>
+			<ion-col no-padding class="social">
+				<button ion-button color="dark">
+					<ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>
+				</button>
+			</ion-col>
+			<ion-col no-padding class="social">
+				<button ion-button color="dark">
+					<ion-icon ios="logo-instagram" md="logo-instagram"></ion-icon>
+				</button>
+			</ion-col>
+		</ion-row>
+		<div class="spacer20"></div>
+
+		<ion-card margin-bottom>
+	  		<ion-card-header style="background-color: #f7f7f7; color: #333; border-right: 1px solid #ddd;" let i=index; (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
+	  			<h5>Product Description <ion-icon color="success" float-right [name]="isGroupShown(i) ? 'remove' : 'add'"></ion-icon></h5>
+	  		</ion-card-header>
+	  		<ion-card-content class="pd-desc" *ngIf="isGroupShown(i)">
+	  			<div style="margin-top: 10px;" [innerHtml] = "productDesc"></div>
+		  	</ion-card-content>
+		</ion-card>
+
+<!-- 		<ion-card let j="index" (click)="specstoggle(j)" [ngClass]="{active: specsShown(j)}">
+			<ion-card-header style="background-color: #f7f7f7; color: #333; border-right: 1px solid #ddd;">
+				<h5>Product Specification <ion-icon color="success" style="float: right;" [name]="specsShown(j) ? 'remove' : 'add'"></ion-icon></h5>
+			</ion-card-header>
+			<ion-card-content *ngIf="specsShown(j)">
+				<ion-grid>
+					<ion-row margin-bottom>
+						<ion-col col-6 no-padding> <b text-uppercase>BRAND</b> </ion-col>
+						<ion-col col-6 no-padding text-right> <span>Apple</span> </ion-col>
+					</ion-row>
+				</ion-grid>
+			</ion-card-content>
+		</ion-card> -->
+
+	</ion-grid>
+</ion-content>
+
+<ion-footer>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-4>
+				<ion-select [(ngModel)]="productqty" style="max-width: 100%;">
+    				<ion-option value="1" selected="true">1</ion-option>
+    				<ion-option value="2">2</ion-option>
+    				<ion-option value="3">3</ion-option>
+    				<ion-option value="4">4</ion-option>
+    				<ion-option value="5">5</ion-option>
+				</ion-select>
+			</ion-col>
+			<ion-col col-8>
+				<button (click)="gotocart()" ion-button color="dark" icon-start text-uppercase full>
+					<ion-icon name="briefcase"></ion-icon>  add to cart
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-footer>

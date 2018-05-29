@@ -1,0 +1,80 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button class="black-text" ion-button menuToggle icon-only>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>
+            <img src="assets/imgs/menamall-logo.png" style="max-height: 25px;" />
+        </ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only> 
+                <ion-icon class="black-text" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+           </button>
+        </ion-buttons>
+    </ion-navbar>
+
+    <ion-toolbar>
+        <ion-item>        
+            <ion-input clearInput type="text"></ion-input>
+            <ion-icon item-end ios="ios-search" md="md-search"></ion-icon>
+        </ion-item>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-slides (ionSlideDidChange)="slideChanged()" autoplay="3000" loop="true">
+        <ion-slide>
+            <div class="sliderr">
+                <img src="assets/imgs/banner-games.png">
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="sliderr">
+                <img src="assets/imgs/banner-men-suit.jpg">
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <div class="sliderr">
+                <img src="assets/imgs/banner-mobile.png">
+            </div>
+        </ion-slide>
+                <ion-slide>
+            <div class="sliderr">
+                <img src="assets/imgs/banner-shoes.jpg">
+            </div>
+        </ion-slide>
+                <ion-slide>
+            <div class="sliderr">
+                <img src="assets/imgs/banner-women-bags.png">
+            </div>
+        </ion-slide>
+                <ion-slide>
+            <div class="sliderr">
+                <img src="assets/imgs/banner-women-dress.png">
+            </div>
+        </ion-slide>
+    </ion-slides>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-6 *ngFor="let slide of homeData">
+                <div class="grid-block"> 
+                    <a (click)="gotoproddetail()">
+                        <img src="{{slide.url}}"/>
+                    </a>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

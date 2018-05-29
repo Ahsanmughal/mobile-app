@@ -1,0 +1,81 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Edit ADDRESS</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+ 	<form (ngSubmit)="editaddress(form)" #editaddressform="ngForm" novalidate>
+		<ion-row>
+			<ion-col>
+				<div>
+					<p class="address-title">Address Name</p>
+                    <ion-input type="text" [(ngModel)]="editaddress.addressname" class="address-input" ngControl="addressname" name="addressname" required></ion-input>
+				</div>
+				<div>
+					<p class="address-title">First Name</p>
+					<ion-input type="text" [(ngModel)]="editaddress.firstname" class="address-input" ngControl="firstname" name="firstname" required></ion-input>
+				</div>
+				<div>
+					<p class="address-title">Last Name</p>
+					<ion-input type="text" [(ngModel)]="editaddress.lastname" class="address-input" ngControl="lastname" name="lastname" required></ion-input>
+				</div> 
+				<div>
+					<p class="address-title">Country</p>
+					<ion-item style="padding-left: 0px;">
+						<ion-select [(ngModel)]="editaddress.country" name="country" style="max-width: 100%; width: 100%; padding-left: 0px;">
+    						<ion-option value="uae" selected="true">United Arab Emirates</ion-option>
+    						<ion-option value="ksa">Saudia Arabia</ion-option>
+						</ion-select>
+					</ion-item>
+				</div>
+				<div>
+					<p class="address-title">City</p>
+					<ion-item style="padding-left: 0px;">
+						<ion-select [(ngModel)]="editaddress.city" name="city" style="max-width: 100%; width: 100%; padding-left: 0px;">
+    						<ion-option value="dubai" selected="true">Dubai</ion-option>
+    						<ion-option value="ajman">Ajman</ion-option>
+    						<ion-option value="sharjah">Sharjah</ion-option>
+    						<ion-option value="abudhabi">Abu Dhabi</ion-option>
+    						<ion-option value="Rak">Ras Al Khamiah</ion-option>
+    						<ion-option value="alanin">Al-Ain</ion-option>
+    						<ion-option value="fujairah">Fujairah</ion-option>
+						</ion-select>
+					</ion-item>
+				</div>
+				<div>
+					<p class="address-title">Area</p>
+					<ion-item style="padding-left: 0px;">
+						<ion-select [(ngModel)]="editaddress.area" name="area" style="max-width: 100%; width: 100%; padding-left: 0px;">
+    						<ion-option value="impz" selected="true">International Media Production Zone</ion-option>
+    						<ion-option value="Marina">Marina</ion-option>
+						</ion-select>
+					</ion-item>
+				</div>
+				<div>
+					<p class="street-no">Street Name/No</p>
+					<ion-input type="text" [(ngModel)]="editaddress.streetname" class="address-input" ngControl="streetname" name="streetname" required></ion-input>
+				</div>
+				<div>
+					<p class="street-no">Building Name/No</p>
+					<ion-input type="text" [(ngModel)]="editaddress.buildingname" class="address-input" ngControl="buildingname" name="buildingname" required></ion-input>
+				</div>
+				<div>
+					<p class="street-no">Mobile Number</p>
+					<ion-input type="text" [(ngModel)]="editaddress.mbnumber" class="address-input" ngControl="mbnumber" name="mbnumber" required></ion-input>
+				</div>
+<!--						
+				<div>
+					<p class="street-no">Address Type</p>
+
+				</div> -->
+			</ion-col>
+		</ion-row>
+
+		<ion-row>
+        	<ion-col>
+        		<button ion-button class="submit-btn" color="dark" full type="submit" [disabled]="!editaddressform.form.valid">Save</button>
+		    </ion-col>
+      	</ion-row>
+	</form>
+</ion-content>

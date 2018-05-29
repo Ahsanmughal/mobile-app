@@ -1,0 +1,17 @@
+page-address{
+	.addresslistt .item-inner{
+		border-bottom: 1px solid transparent !important;
+	}
+	.addresslistt .adlist{
+		border-bottom: 1px solid #dedede;
+		padding-bottom:10px;
+	}
+	.addresslistt .adlist .adbtns{
+		padding-left: 15px;
+	}
+	.addresslistt .adlist .adbtns .btn{
+		height: 22px;
+  		background-color: #ddd;
+  		color: #000;
+	}
+}

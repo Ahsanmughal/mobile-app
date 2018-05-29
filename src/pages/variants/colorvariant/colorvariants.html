@@ -1,0 +1,23 @@
+<ion-header>
+  	<ion-navbar>
+  		<ion-buttons class="black-text" start>
+      		<button ion-button (click)="closeModal()">Close</button>
+    	</ion-buttons>
+    	<ion-title>Color Variants</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list radio-group [(ngModel)]="selectedcolor">
+		<ion-item *ngFor="let type of colorsList">
+      <ion-label>{{type.label}}</ion-label>
+      <ion-radio value="{{type.label}}" (ionSelect)="radioChecked(type)"></ion-radio>
+    </ion-item>
+	</ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar position="bottom">
+        <button (click)="closeModal()" ion-button block color="dark">APPLY</button>
+    </ion-toolbar>
+</ion-footer>

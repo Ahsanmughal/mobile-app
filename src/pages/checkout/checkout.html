@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button class="black-text" ion-button menuToggle icon-only>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Check Out</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only> 
+                <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+           </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <h5 text-uppercase>SHIP TO</h5> 
+                <div style="background-color: #dedede; color: #333; padding: 5px;">
+                    <a style="color: #333333;">
+                        <p>Shyju Kuyiloor Kavil(Primary)</p>
+                        <p>Business Bay Church Tower Dubai </p>
+                        <p>United Arab Emirates</p>
+                        <p>+971 55 6867963</p>
+                    </a>
+                </div>
+                <h5 text-uppercase>shipment</h5>
+                <ion-list>
+                    <ion-item *ngFor="let item of checkoutitems">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col col-3>
+                                    <img src="{{item.product_thumbimages}}" class="cart-img"/>
+                                </ion-col>
+                                <ion-col col-9>
+                                    <h4 text-wrap class="card-title">{{item.title}}</h4>
+                                    <h4>{{item.priceis}} AED</h4>
+                                    <h4 *ngIf="item.color">Color: <span>{{item.color.title}}</span></h4>
+                                    <h4>QTY : {{item.quantity}}</h4>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                    <ion-item style="background-color: #dedede; color: #333;">
+                        <a (click)="openpromoModal()" text-uppercase style="color: #333">
+                            <div> promocode  <ion-icon style="float: right" name="close"></ion-icon></div>
+                        </a>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-9>
+                        <h3 class="text-bold" text-right>Sub Total</h3>
+                    </ion-col>
+                    <ion-col col-3>
+                        <h3 class="text-bold" text-right>100 AED</h3>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-9>
+                        <h3 class="text-bold" text-right>Shipping Charge</h3>
+                    </ion-col>
+                    <ion-col col-3>
+                        <h3 class="text-bold" text-right>20 AED</h3>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+        <ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-9>
+                        <div text-right>
+                            <h3 class="text-bold">Cart Total <small class="text-normal">(Inclusive of VAT)</small></h3>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3>
+                        <h3 class="text-bold" text-right>120 AED</h3>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+    </ion-grid>
+</ion-content>
+
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button (click)="gotopayment()" ion-button color="dark" icon-start text-uppercase full>
+                    <ion-icon name="briefcase"></ion-icon>  continue to payment
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>

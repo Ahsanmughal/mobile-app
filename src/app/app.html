@@ -1,0 +1,80 @@
+<ion-menu side="left" type="overlay" [content]="content">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title item-left>Hello
+                <span *ngIf="userinfo">{{userinfo.firstname}} {{userinfo.lastname}}</span>
+                <span *ngIf="!userinfo">Guest</span>
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <nav class="nav" role="navigation">
+            <ul class="nav__list">
+                <li (click)="homePage()" menuClose> <div>Home</div> </li>
+                <li *ngIf="!userinfo" (click)="signupPage()" menuClose> <div>Sign Up</div> </li>
+                <li *ngIf="!userinfo" (click)="signinPage()" menuClose> <div>Sign In</div> </li>
+                <li *ngIf="userinfo"><div><a (click)="logout()">Log Out </a></div></li>
+            </ul>
+        </nav>
+        <div style="height: 30px; background-color: #dedede; color: #000; line-height: 20px; padding: 5px;">
+            <label>Categories</label>
+        </div>
+        <nav class="nav" role="navigation">
+            <ul class="nav__list">
+                <li *ngFor="let p of cate; let i=index;" text-wrap (click)="toggleLevel1('idx'+i)" [ngClass]="{active: isLevel1Shown('idx'+i)}">
+                    <div *ngIf="p.include_in_menu == true">
+                        <label *ngIf="p.include_in_menu == true">
+                            {{p.name}}
+                            <ion-icon 
+                                class="app-ion-icon"
+                                *ngIf="p.children_data.length > 0"
+                                item-right [name]="isLevel1Shown('idx'+i) ? 'arrow-up' : 'arrow-down'">
+                            </ion-icon>
+                        </label>
+                    </div>
+                    <ul class="sub-list" *ngIf="isLevel1Shown('idx'+i)  && p.children_data.length > 0">
+                        <li *ngFor="let s of p.children_data; let i2=index"  (click)="toggleLevel2('idx'+i+'idx'+i2)" [ngClass]="{active: isLevel2Shown('idx'+i+'idx'+i2)}">
+                            <div *ngIf="s.include_in_menu == true">
+                                <label>
+                                    {{s.name}}
+                                    <ion-icon 
+                                        class="app-ion-icon"
+                                        *ngIf="s.children_data.length > 0"
+                                        item-right
+                                        [name]="isLevel2Shown('idx'+i+'idx'+i2) ? 'arrow-up' : 'arrow-down'">
+                                    </ion-icon> 
+                                </label>
+                            </div>
+                            <ul *ngIf="isLevel2Shown('idx'+i+'idx'+i2)">
+                                <li *ngFor="let sb of s.children_data" menuClose (click)="getParentValues(p.id, s.id,sb.id,sb.name)" text-wrap>
+                                    <div>
+                                        {{sb.name}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <nav class="nav" role="navigation"> 
+            <ul class="nav__list">
+                <li> <div> <a> Change Language</a> </div> </li>
+                <li> <div> <a> My Account</a> </div> </li>
+                <li> <div> <a> Contact Us</a> </div> </li>
+            </ul>
+        </nav>
+
+        <nav class="nav" role="navigation">
+            <ul class="nav__list">
+                <li><div><a (click)="gototc()">Terms & Conditions </a></div></li>
+                <li><div><a>Privacy Policy </a></div></li>
+            </ul>
+        </nav>
+
+    </ion-content>
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

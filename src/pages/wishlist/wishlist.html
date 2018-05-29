@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-navbar>
+		<button class="black-text" ion-button menuToggle> <ion-icon name="menu"></ion-icon> </button>
+		<ion-title>My WISHLIST</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item *ngFor="let item of wishlist">
+		    <ion-grid>
+			    <ion-row>
+			    	<ion-col col-3>
+			    		<img src="{{item.product_thumbimages}}" class="cart-img"/>
+			    	</ion-col>
+			    	<ion-col col-9>
+			 			<h2 text-wrap class="card-title">{{item.title}}</h2>
+			 			<h2>{{item.priceis}} AED</h2>
+			 			<h2 *ngIf="item.color">Color: <span>{{item.color.title}}</span></h2>
+		        		<button class="mc-btn" ion-button small>MOVE TO CART</button>
+		            	<button class="r-btn" ion-button small>REMOVE</button>
+				 	</ion-col>
+			    </ion-row>
+			</ion-grid>
+		</ion-item>
+	</ion-list>
+</ion-content>
